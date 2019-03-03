@@ -1,0 +1,16 @@
+.default{
+    color: #61dafb;
+    padding: 5px;
+}
+
+.warning{
+    composes:default;
+    color: #282c34;
+    background-color: yellow;
+}
+
+.error{
+    composes: warning;
+    color: red;
+
+}
