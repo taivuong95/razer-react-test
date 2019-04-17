@@ -1,21 +1,9 @@
 import React from 'react';
-import Input from '../../components/Input/Input';
 import './Mic.css';
 class Mic extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isClick: false,
-    };
-    this.toggle = this.toggle.bind(this);
+  componentDidMount() {
+    window.test();
   }
-
-  componentDidMount() {}
-
-  toggle = () => {
-    this.setState({ isClick: !this.state.isClick });
-  };
 
   render() {
     return (
@@ -56,31 +44,22 @@ class Mic extends React.Component {
             <div className="loader" tooltip="Syncing Profiles" />
             <div>profile</div>
 
-            <input
-              type="text"
-              name="profile"
-              id="profileEdit"
-              maxLength="25"
-              className=""
-            />
+            <input type="text" name="profile" id="profileEdit" maxLength="25" />
 
             <div className="dropdown-area">
               <div id="profileDrop" className="s3-dropdown">
-                <div className="selected">profile 7</div>
+                <div className="selected">profile 5</div>
                 <div className="icon expand" />
               </div>
-              <div
-                id="profileDropOpt"
-                className="s3-options flex"
-                style={{ bottom: 'unset', top: '27px' }}
-              >
+              <div id="profileDropOpt" className="s3-options flex">
                 <div className="option">default profile</div>
-                <div className="option ">profile 2</div>
-                <div className="option ">profile 3</div>
+                <div className="option">profile 2</div>
+                <div className="option">profile 3</div>
                 <div className="option">profile 4</div>
-                <div className="option ">profile 5</div>
+                <div className="option selected">profile 5</div>
                 <div className="option">profile 6</div>
-                <div className="option selected">profile 7</div>
+                <div className="option">profile 7</div>
+                <div className="option">profile 8</div>
               </div>
             </div>
 
@@ -131,23 +110,7 @@ class Mic extends React.Component {
                 </div>
 
                 <div className="h2-title">mic volume</div>
-                <div className="slider-container on" id="slPhone">
-                  <div className="foot min">low</div>
-                  <div className="foot mid">medium</div>
-                  <div className="foot max">high</div>
-                  <div
-                    id="slPhoneFill"
-                    className="left"
-                    style={{ width: '260px' }}
-                  />
-                  <div className="track" />
-                  <div
-                    id="slPhoneTip"
-                    className="slider-tip"
-                    style={{ left: '245.258px' }}
-                  >
-                    55
-                  </div>
+                <div className="slider-container" id="slPhone">
                   <input
                     type="range"
                     min="10"
@@ -169,23 +132,7 @@ class Mic extends React.Component {
                   Adjust this setting to remove unwanted background noise or
                   increase the amount of mic output heard
                 </div>
-                <div className="slider-container on" id="slSensi">
-                  <div className="foot min">low</div>
-                  <div className="foot mid">medium</div>
-                  <div className="foot max">high</div>
-                  <div
-                    id="slSensiFill"
-                    className="left"
-                    style={{ width: '260px' }}
-                  />
-                  <div className="track" />
-                  <div
-                    id="slSensiTip"
-                    className="slider-tip"
-                    style={{ left: '245.258px' }}
-                  >
-                    55
-                  </div>
+                <div className="slider-container" id="slSensi">
                   <input
                     type="range"
                     min="10"
@@ -213,22 +160,6 @@ class Mic extends React.Component {
                   </div>
                 </div>
                 <div className="slider-container" id="slSide">
-                  <div className="foot min">0</div>
-                  <div className="foot mid">medium</div>
-                  <div className="foot max">100</div>
-                  <div
-                    id="slSideFill"
-                    className="left"
-                    style={{ width: '260px' }}
-                  />
-                  <div className="track" />
-                  <div
-                    id="slSideTip"
-                    className="slider-tip"
-                    style={{ left: '245.258px' }}
-                  >
-                    50
-                  </div>
                   <input
                     type="range"
                     min="0"
@@ -237,7 +168,6 @@ class Mic extends React.Component {
                     step="1"
                     className="slider"
                     id="slSideRange"
-                    disabled=""
                   />
                 </div>
               </div>
@@ -250,31 +180,12 @@ class Mic extends React.Component {
                 <div className="title">enhancements</div>
 
                 <div className="check-item">
-                  <input type="checkbox" id="checkNorm" onClick={this.toggle} />
+                  <input type="checkbox" id="checkNorm" />
                   <label htmlFor="checkNorm" className="check-box">
                     <div className="check-text">Volume Normalization</div>
                   </label>
                 </div>
-                <div
-                  className="slider-container"
-                  id={this.state.isClick ? 'slNormOn' : 'slNorm'}
-                >
-                  <div className="foot min">low</div>
-                  <div className="foot mid">medium</div>
-                  <div className="foot max">high</div>
-                  <div
-                    id="slNormFill"
-                    className="left"
-                    style={{ width: '218.667px' }}
-                  />
-                  <div className="track" />
-                  <div
-                    id="slNormTip"
-                    className="slider-tip"
-                    style={{ left: '203.924px' }}
-                  >
-                    50
-                  </div>
+                <div className="slider-container" id="slNorm">
                   <input
                     type="range"
                     min="10"
@@ -283,7 +194,6 @@ class Mic extends React.Component {
                     step="1"
                     className="slider"
                     id="slNormRange"
-                    disabled=""
                   />
                 </div>
 
@@ -294,22 +204,6 @@ class Mic extends React.Component {
                   </label>
                 </div>
                 <div className="slider-container" id="slAmb">
-                  <div className="foot min">low</div>
-                  <div className="foot mid">medium</div>
-                  <div className="foot max">high</div>
-                  <div
-                    id="slAmbFill"
-                    className="left"
-                    style={{ width: '218.667px' }}
-                  />
-                  <div className="track" />
-                  <div
-                    id="slAmbTip"
-                    className="slider-tip"
-                    style={{ left: '203.924px' }}
-                  >
-                    50
-                  </div>
                   <input
                     type="range"
                     min="10"
@@ -318,7 +212,6 @@ class Mic extends React.Component {
                     step="1"
                     className="slider"
                     id="slAmbRange"
-                    disabled=""
                   />
                 </div>
 
@@ -329,22 +222,6 @@ class Mic extends React.Component {
                   </label>
                 </div>
                 <div className="slider-container" id="slClarity">
-                  <div className="foot min">low</div>
-                  <div className="foot mid">medium</div>
-                  <div className="foot max">high</div>
-                  <div
-                    id="slClarityFill"
-                    className="left"
-                    style={{ width: '218.667px' }}
-                  />
-                  <div className="track" />
-                  <div
-                    id="slClarityTip"
-                    className="slider-tip"
-                    style={{ left: '203.924px' }}
-                  >
-                    50
-                  </div>
                   <input
                     type="range"
                     min="10"
@@ -353,7 +230,6 @@ class Mic extends React.Component {
                     step="1"
                     className="slider"
                     id="slClarityRange"
-                    disabled=""
                   />
                 </div>
               </div>

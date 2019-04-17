@@ -24,22 +24,69 @@ Learn how to configure a non-root public URL by running `npm run build`.
 -->
 
     <!--INCLUDE CSS FILE-->
+
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/fonts/roboto.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/fonts/razerf5.css"
+    />
+
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/main.css"
+    />
+
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/nav.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/dropdown.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/switch.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/slider.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/checkbox.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/tooltip.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="%PUBLIC_URL%/assets/css/profile-bar.css"
+    />
     <link
       type="text/css"
       rel="stylesheet"
       href="%PUBLIC_URL%/assets/css/body-widgets.css"
     />
 
-    <link
+    <!-- <link
       type="text/css"
       rel="stylesheet"
       href="%PUBLIC_URL%/assets/css/calibrator.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/checkbox.css"
     />
 
     <link
@@ -63,25 +110,7 @@ Learn how to configure a non-root public URL by running `npm run build`.
     <link
       type="text/css"
       rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/dropdown.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
       href="%PUBLIC_URL%/assets/css/equalizer.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/main.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/nav.css"
     />
 
     <link
@@ -93,44 +122,8 @@ Learn how to configure a non-root public URL by running `npm run build`.
     <link
       type="text/css"
       rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/profile-bar.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/slider.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/switch.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
       href="%PUBLIC_URL%/assets/css/tabs.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/tooltip.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/fonts/razerf5.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/fonts/roboto.css"
-    />
+    /> -->
 
     <title>React App</title>
   </head>
@@ -150,7 +143,7 @@ To create a production bundle, use `npm run build` or `yarn build`.
 -->
 
     <!--INCLIDE JS FILE-->
-    <script
+    <!-- <script
       type="text/javascript"
       src="%PUBLIC_URL%/assets/js/calibrator.js"
     ></script>
@@ -170,25 +163,29 @@ To create a production bundle, use `npm run build` or `yarn build`.
       type="text/javascript"
       src="%PUBLIC_URL%/assets/js/dropdown_old.js"
     ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/dropdown.js"
-    ></script>
+
     <script
       type="text/javascript"
       src="%PUBLIC_URL%/assets/js/equalizer.js"
     ></script>
+
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/picker.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="%PUBLIC_URL%/assets/js/tabs.js"
+    ></script> -->
+
     <script
       type="text/javascript"
       src="%PUBLIC_URL%/assets/js/main.js"
     ></script>
     <script
       type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/picker.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/slider.js"
+      src="%PUBLIC_URL%/assets/js/dropdown.js"
     ></script>
     <script
       type="text/javascript"
@@ -196,7 +193,86 @@ To create a production bundle, use `npm run build` or `yarn build`.
     ></script>
     <script
       type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/tabs.js"
+      src="%PUBLIC_URL%/assets/js/slider.js"
     ></script>
+
+    <!-- local js -->
+    <script type="text/javascript">
+      function test() {
+        var mouseIsDown = false;
+
+        const pf = new Dropdown('profileDrop');
+
+        const switchSet = [
+          { id: 'swPhone', target: 'slPhone', toggle: 'on' },
+          { id: 'swSensi', target: 'slSensi', toggle: 'on' },
+          { id: 'swSide', target: 'slSide', toggle: 'on' },
+        ];
+
+        var sw = [];
+
+        for (var i = 0; i < switchSet.length; i++) {
+          sw[i] = new Switch(
+            switchSet[i].id,
+            switchSet[i].target,
+            switchSet[i].toggle
+          );
+        }
+
+        const slider1 = new Slider('slPhone');
+        const slider2 = new Slider('slSensi');
+
+        const slider3 = new Slider('slSide', '0', '100');
+
+        const slider4 = new Slider('slNorm');
+        const slider5 = new Slider('slAmb');
+        const slider6 = new Slider('slClarity');
+
+        for (var i = 0; i < switchSet.length; i++) {
+          let obj = sw[i];
+          obj.switchDom.addEventListener('click', function() {
+            obj.handleClick();
+          });
+        }
+
+        window.onresize = function(e) {
+          //
+        };
+        window.onmousedown = function(e) {
+          mouseIsDown = true;
+          pf.handleDropdown(e);
+        };
+        window.onmousemove = function(e) {
+          slider1.handleMouseMove();
+          slider2.handleMouseMove();
+          slider3.handleMouseMove();
+          slider4.handleMouseMove();
+          slider5.handleMouseMove();
+          slider6.handleMouseMove();
+        };
+        window.onmouseup = function(e) {
+          mouseIsDown = false;
+        };
+
+        document
+          .getElementById('checkNorm')
+          .addEventListener('click', function(e) {
+            slider4.containerDom.classList.toggle('on');
+            slider4.sliderDom.disabled = false;
+          });
+        document
+          .getElementById('checkAmb')
+          .addEventListener('click', function(e) {
+            slider5.containerDom.classList.toggle('on');
+            slider5.sliderDom.disabled = false;
+          });
+        document
+          .getElementById('checkClarity')
+          .addEventListener('click', function(e) {
+            slider6.containerDom.classList.toggle('on');
+            slider6.sliderDom.disabled = false;
+          });
+      }
+    </script>
   </body>
 </html>
