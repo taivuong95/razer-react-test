@@ -1,0 +1,131 @@
+.slider-container {
+	opacity: .3;
+	height: 64px;
+	position: relative;
+	/*margin-bottom: 20px;*/
+
+	will-change: opacity;
+	transition: opacity .3s;
+}
+.slider-container.on {
+	opacity: 1;
+}
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 6px;
+	border-radius: 3px;
+	background: transparent;
+	outline: none;
+	opacity: 1;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+	margin: 0;
+	position: absolute;
+	bottom: 25px;
+	z-index: 3;
+}
+.slider:hover {
+	cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	background: #44d62c;
+	border-radius: 8px;
+
+	will-change: transform, background;
+	transition: transform .2s, background .3s;
+}
+.slider-container.on .slider::-webkit-slider-thumb:hover {
+	cursor: pointer;
+  	/*background: #fff;*/
+  	background: #5d5d5d;
+  	border: 2px solid #44d62c;
+}
+.slider-container.on .slider::-webkit-slider-thumb:active {
+  	background: #383838;
+  	border: 2px solid #44d62c;
+	/*transform: scale(1.2);*/
+}
+.slider-tip {
+    position: absolute;
+    background-color: #44d62c;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #212121;
+    line-height: 14px;
+    border-radius: 3px;
+	opacity: 1;
+    will-change: opacity;
+    transition: opacity .3s;
+	bottom: 42px;
+	pointer-events: none;
+
+	will-change: left;
+	transition: left .1s;
+}
+.slider-container.no-tip {
+	height: 36px;
+}
+.slider-container.no-tip .slider-tip {
+	display: none;
+}
+.slider-container .left {
+	height: 6px;
+	border-radius: 3px;
+	background: #44d62c;
+	/*background: orange;*/
+	width: 50%;
+	position: absolute;
+	left: 0;
+	bottom: 25px;
+	z-index: 2;
+	max-width: 100%;
+}
+.slider-container .track {
+	height: 6px;
+	width: 100%;
+	border-radius: 3px;
+	z-index: 1;
+	position: absolute;
+	bottom: 25px;
+	background: #2b741f;
+	z-index: 1;
+}
+.slider-container .foot {
+	position: absolute;
+	bottom: 0;
+	text-transform: uppercase;
+	/*visibility: hidden;*/
+	/*opacity: 0;*/
+	visibility: visible;
+
+	opacity: 1;
+
+	will-change: visibility, opacity;
+	transition: visibility 0s, opacity 0.3s linear;
+}
+.slider-container.on .foot {
+	visibility: visible;
+	opacity: 1;
+}
+.foot.min {
+	left: 0;
+}
+.foot.mid {
+	opacity: 0 !important;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.foot.max {
+	right: 0;
+}
+
+.slider-container.indent {
+    width: 490px;
+    margin-left: 30px;
+}

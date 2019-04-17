@@ -1,0 +1,242 @@
+.main-container {
+	position: relative;
+}
+.custom-zone {
+	height: 500px;
+	width: 100%;
+	margin-top: 20px;
+	padding-top: 20px;
+}
+.prod-base {
+    max-height: 100%;
+    height: 100%;
+    position: relative;
+    z-index: -1;
+}
+.prod-base img {
+	display: block;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	left: calc(50% - 730px / 2);
+}
+.key-tips {
+    position: absolute;
+    width: 164px;
+    height: 76px;
+    background: rgba(102,102,102,0.8);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    opacity: 0;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+
+    will-change: opacity, visibility, top, left;
+    transition: opacity 0.3s, visibility 0s linear, top 0.1s, left 0.1s;
+}
+.key-tips.show {
+	opacity: 1;
+	visibility: visible;
+}
+.v-drawer {
+	height: calc(100% - 48px);
+}
+.dot-bg {
+	background:
+		linear-gradient(90deg, #222 18px, transparent 1%) center,
+		linear-gradient(#222 18px, transparent 1%) center,
+		#5d5d5d;
+  	background-size: 20px 20px;
+  	position: relative;
+}
+.dot-bg .dim-corner {
+    position: absolute;
+    z-index: 0;
+	min-width: 1024px;
+    width: calc(100% + 0px);
+    height: calc(100% - 30px);
+    background: radial-gradient(transparent, #222);
+    top: 0px;
+    left: 0;
+}
+.v-shrink {
+	width: auto;
+	height: calc(100% - 0px);
+    max-width: calc(100% - 0px);
+    width: calc(100% - 0px);
+
+    will-change: max-width, width;
+    transition: max-width 0.3s, width 0.3s;
+}
+.v-shrink.p1 {
+    max-width: calc(100% - 230px);
+    width: calc(100% - 230px);
+}
+.v-shrink.p2 {
+    max-width: calc(100% - 700px + 190px);
+    width: calc(100% - 700px + 190px);
+}
+.v-shrink.p1.p2 {
+    max-width: calc(100% - 700px);
+    width: calc(100% - 700px);
+}
+
+.v-shrink .body-wrapper.customize {
+	position: relative;
+	overflow-x: auto;
+	top: 0; bottom: 0;
+	height: calc(100% - 30px);
+	max-width: 100%;
+	width: 100%;
+	min-width: unset;
+	z-index: 1;
+}
+.v-shrink .body-wrapper.customize > div {
+	min-width: calc(1024px - 40px);
+    position: relative;
+    z-index: 2;
+}
+.v-shrink .body-wrapper.customize > div.profile-bar {
+	z-index: 10;
+}
+.v-shrink .name-bar {
+	position: relative;
+	max-width: 100%;
+	width: 100%;
+	min-width: unset;
+}
+.left-panel {
+	flex: 0 0 auto !important;
+	/*position: fixed;*/
+	height: 100%;
+	z-index: 1;
+	flex-direction: column;
+	overflow: hidden;
+
+	/*width: 0;*/
+}
+.left-panel.panel-1 {
+	width: 230px;
+	max-width: 230px;
+	background: #2b2b2b;
+	z-index: 2;
+
+	will-change: width;
+	transition: width 0.3s;
+}
+.left-panel.panel-2 {
+	width: 260px;
+	max-width: 260px;
+	background: #222;
+	margin-left: -40px;
+
+	will-change: width;
+	transition: width 0.3s;
+}
+.left-panel.panel-3 {
+	width: 250px;
+	background: #111;
+	max-width: 250px;
+
+	will-change: width;
+	transition: width 0.3s;
+}
+.v-drawer > div.top-area {
+    max-width: 40px;
+    min-width: unset !important;
+    height: 40px;
+    /*background: #999;*/
+    width: 40px;
+    top: 48px;
+    left: 0;
+    position: absolute;
+    z-index: 2;
+    padding: 10px;
+}
+.left-panel .top-area {
+	height: 40px;
+	max-height: 40px;
+	/*background: #707070;*/
+	padding: 10px;
+}
+.top-area .trigger {
+	width: 20px;
+	height: 20px;
+	background: hotpink;
+}
+.top-area .trigger:hover {
+	cursor: pointer;
+}
+.panel-3 .trigger {
+	float: right;
+}
+.left-panel.hide {
+	width: 0;
+}
+.left-panel.panel-1.hide {
+	width: 0px;
+	z-index: 1;
+}
+div.flex > div.key-item {
+	flex: 0 0 auto;
+	height: 40px;
+}
+.key-item:hover {
+	cursor: pointer;
+}
+.panel-1 .key-item {
+	background-color: #2b2b2b;
+	align-items: center;
+}
+.panel-1 .key-item.active,
+.panel-1 .key-item:hover {
+	background-color: #222;
+}
+.panel-1 .key-item::before {
+	content: attr(key-name);
+	width: 79px;
+	text-align: center;
+	font-size: 13px;
+}
+.panel-1 .key-item .divider {
+	width: 1px;
+	height: 20px;
+	background: #ccc;
+}
+.panel-1 .key-item .key-right {
+	width: 150px;
+	padding-left: 10px;
+	font-size: 15px;
+}
+.panel-1 .key-item .key-right::before {
+	content: attr(key-type);
+	font-size: 10px;
+	text-transform: uppercase;
+	display: block;
+}
+.panel-2 .key-item {
+	text-transform: uppercase;
+    padding-left: 80px;
+    padding-top: 10px;
+	background-color: #222;
+	font-size: 14px;
+	position: relative;
+	line-height: 20px;
+}
+.panel-2 .key-item::before {
+	content: '';
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	position: absolute;
+	top: 10px; left: 50px;
+	display: block;
+}
+.panel-2 .key-item.active,
+.panel-2 .key-item:hover {
+	background-color: #111;
+}

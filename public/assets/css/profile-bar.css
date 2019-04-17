@@ -1,0 +1,235 @@
+.profile-bar {
+	width: 95%;
+	height: 26px;
+	margin: 0 auto 10px auto;
+	font-size: 14px;
+	/*line-height: 26px;*/
+	text-transform: uppercase;
+	flex-direction: row;
+	align-items: center;
+    justify-content: center;
+}
+.flex.profile-bar > div {
+	flex: 0 0 auto;
+	position: relative;
+}
+.profile-bar .hover-border {
+	width: 26px;
+    height: 26px;
+    margin-right: 10px;
+    background-size: 20px;
+	border: 1px solid #222;   
+    border-color: #222;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    will-change: border-color;
+    transition: border-color 0.2s;
+}
+.profile-bar .hover-border:hover {
+	border-color: #5d5d5d;
+	cursor: pointer;
+}
+.profile-bar .hover-border.dots3.active,
+.profile-bar .hover-border:active {
+	border-color: #44d62c;
+}
+.profile-bar .obm {
+    background-image: url('../img_ui/icon_obm.svg');
+
+}
+.profile-bar .dots3 {
+    background-image: url('../img_ui/icon_more.svg');
+}
+.profile-bar .batt {
+	margin-left: 10px;
+	width: 26px;
+    height: 26px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../img_ui/icon_battery_100.svg');
+}
+.batt.charging {
+    background-image: url('../img_ui/icon_battery_charging.svg');
+}
+.batt.batt-100 {
+    background-image: url('../img_ui/icon_battery_100.svg');
+}
+.batt.batt-80 {
+    background-image: url('../img_ui/icon_battery_80.svg');
+}
+.batt.batt-90 {
+    background-image: url('../img_ui/icon_battery_90.svg');
+}
+.batt.batt-70 {
+    background-image: url('../img_ui/icon_battery_70.svg');
+}
+.batt.batt-60 {
+    background-image: url('../img_ui/icon_battery_60.svg');
+}
+.batt.batt-50 {
+    background-image: url('../img_ui/icon_battery_50.svg');
+}
+.batt.batt-40 {
+    background-image: url('../img_ui/icon_battery_40.svg');
+}
+.batt.batt-30 {
+    background-image: url('../img_ui/icon_battery_30.svg');
+}
+.batt.batt-20 {
+    background-image: url('../img_ui/icon_battery_20.svg');
+}
+.batt.batt-10 {
+    background-image: url('../img_ui/icon_battery_10.svg');
+}
+.batt.batt-0 {
+    background-image: url('../img_ui/icon_battery_0.svg');
+}
+.batt.batt-off {
+    background-image: url('../img_ui/icon_device_off.svg');
+}
+.profile-bar .divider {
+	width: 1px;
+	height: 26px;
+	background: #5d5d5d;
+}
+.loader {
+    width: 26px;
+    height: 26px;
+    background-image: url(../img_ui/preloader.svg);
+    margin-right: 10px;
+
+	opacity: 0;
+	visibility: hidden;
+
+	will-change: opacity, visibility;
+	transition:
+		visibility 0.3s,
+		opacity 0s linear;
+}
+.loader.show {
+	opacity: 1;
+	visibility: visible;
+}
+.profile-act {
+    width: 150px;
+    height: 0;
+    background: #000;
+    border: 1px solid #5d5d5d;
+    z-index: 3;
+    position: absolute;
+    top: 26px;
+    left: -1px;
+    visibility: hidden;
+
+    will-change: height, visibility, opacity;
+    transition: height .2s, visibility 0s, opacity 0.1s linear;
+}
+.profile-act.show {
+    opacity: 1;
+    visibility: visible;
+    height: 180px;
+}
+.profile-act .action {
+    height: 27px;
+    padding: 5px 6px;
+    text-transform: capitalize;
+    line-height: 17px;
+    background-color: transparent;
+
+    will-change: background-color;
+    transition: background-color .3s;
+}
+.profile-act .divider {
+    background: #5d5d5d;
+    height: 1px;
+    width: calc(100% - 12px);
+    margin: 4px 6px;
+}
+.profile-act .action:hover {
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.1);
+}
+.profile-act .action.disabled {
+    opacity: 0.3;
+}
+.profile-act .action.disabled:hover {
+    background-color: transparent;
+    cursor: default;
+}
+#profileEdit {
+    position: absolute;
+    z-index: 100;
+
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    /*display: none;*/
+    /*width: calc(100% - 30px);*/
+    /*margin-left: 30px;*/
+    border: 1px solid #44d62c;
+    box-sizing: border-box;
+    background-color: #111 !important;
+    padding: 5px 6px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #ccc;
+    height: 27px;
+    width: 230px;
+    margin-left: -10px;
+    display: none;
+}
+#profileEdit.show {
+    display: block;
+}
+.profile-del {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 300px;
+    background-color: #111;
+    border: 1px solid #c8323c;
+    border-radius: 3px;
+    box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.2);
+    padding: 20px;
+    left: 127px;
+    top: 205px;
+    display: flex !important;
+    visibility: hidden;
+    opacity: 0;
+
+    z-index: 3;
+    left: calc(50% - 150px);
+    top: 52px;
+
+    will-change: visibility, opacity;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+.profile-del .title {
+    font-weight: bold;
+    color: #c83200;
+    margin-bottom: 10px;
+}
+.profile-del .body-text {
+    text-transform: none;
+    margin-bottom: 10px;
+}
+.profile-del.show {
+    visibility: visible;
+    opacity: 1;
+}
+.flex.profile-bar > div.profile-del  {
+    position: absolute;
+}
+.alert div.thx-btn {
+    height: 27px;
+    width: auto;
+    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 17px;
+    background-color: #c8323c;
+    padding: 4px 0;
+    min-width: 90px;
+    border: 1px solid rgba(0,0,0,0.3);
+}

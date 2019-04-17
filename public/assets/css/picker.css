@@ -1,0 +1,335 @@
+#lightEffects canvas {
+	box-sizing: border-box;
+}
+.picker-container {
+	width: 220px;
+	height: 269px;
+	border: 1px solid #5d5d5d;
+	padding: 9px;
+	display: none;
+	position: absolute;
+	background: #111;
+}
+.picker-container.show {
+	display: block;
+	z-index: 101;
+}
+.color-save {
+	margin-top: 10px;
+}
+.color-control {
+	flex: 0 0 auto !important;
+	height: 48px;
+	position: relative;
+}
+.color-control::before {
+	content: attr(name);
+	font-size: 14px;
+	color: #cccccc;
+	text-align: center;
+	line-height: 19px;
+	text-transform: uppercase;
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - 5px);
+}
+.cp-wrapper {
+	position: relative;
+	height: 120px;
+	max-height: 120px;
+	width: 200px;
+	max-width: 200px;
+	overflow: hidden;
+	border: 1px solid #5d5d5d;
+}
+.cp-wrapper:hover {
+	cursor: pointer;
+}
+canvas.picker {
+	height: 120px;
+	width: 200px;
+}
+.cp-wrapper .drop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 14px;
+	width: 14px;
+	border: 2px solid rgba(255, 255, 255, 1);
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 1);
+	border-radius: 7px;
+
+	will-change: top, left;
+	transition: top 0.1s, left 0.1s;
+}
+.picked-row {
+	position: relative;
+}
+.picked-row .picked {
+	height: 24px;
+	width: 24px;
+	border: 1px solid white;
+	margin-top: 10px;
+}
+.picked-row .to-black {
+	height: 16px;
+	width: 130px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	/*border-radius: 3px;*/
+	margin-left: 10px;
+	margin-top: 14px;
+}
+.picked-row .bright-ness {
+	position: absolute;
+	height: 20px;
+	width: 8px;
+	top: 10px;
+	left: calc(164px - 8px);
+
+	will-change: left;
+	transition: left 0.1s;
+}
+.picked-row .bright-ness:hover,
+.to-black:hover {
+	cursor: pointer;
+}
+.picked-row .bright-ness::before {
+	content: '';
+	border-top: 4px solid #fff;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 4px solid transparent;
+	width: 8px;
+	height: 8px;
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+}
+.picked-row .bright-ness::after {
+	content: '';
+	border: 1px solid #fff;
+	width: 8px;
+	height: 16px;
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 0;
+}
+.input-row {
+	margin-top: 10px;
+}
+.input-row input {
+	background-color: rgba(17, 17, 17, 1);
+	border: 1px solid #5d5d5d;
+	height: 26px;
+	margin-right: 5px;
+	box-sizing: border-box;
+	font-size: 14px;
+	color: #cccccc;
+	text-align: center;
+	line-height: 19px;
+	text-transform: uppercase;
+}
+.input-row input.hex {
+	width: 65px;
+}
+.input-row input.rgb {
+	width: 40px;
+}
+.picked-row .tool {
+    position: absolute;
+    right: 0;
+    background-image: url(../img_ui/color_picker.svg);
+    background-size: 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+    top: 11px;
+
+    will-change: background-color;
+    transition: background-color .3s;
+}
+.picked-row .tool:hover {
+	/*background-color: rgba(255,255,255,0.1);*/
+	cursor: pointer;
+}
+
+
+/* dropdown */
+.dropdown-area.dropdown-color {
+	/*z-index: 102;*/
+	width: 53px;
+	flex: 0 0 auto !important;
+	margin-top: 5px;
+}
+.dropdown-color .s3-options {
+	opacity: 0;
+	height: 0;
+	min-height: 0;
+    will-change: height, min-height, border-bottom;
+    transition: height .2s, min-height .2s, border-bottom .1s;
+}
+.dropdown-color .s3-options .color-label {
+    font-size: 14px;
+    color: #ccc;
+    text-align: left;
+    line-height: 20px;
+    width: 100%;
+    padding-left: 10px;
+    text-transform: capitalize;
+    height: 20px;
+    margin-top: 10px;
+}
+.dropdown-color .s3-options.expand {
+	background-color: #111;
+	opacity: 1;
+	padding: 5px 0px 10px 0;
+	min-width: 250px;
+	width: 250px;
+	min-height: 250px;
+	height: 250px;
+	overflow: hidden;
+}
+.dropdown-color .presets {
+	justify-content: center;
+	flex-wrap: wrap;
+	height: 150px;
+	max-height: 150px;
+}
+.dropdown-color .presets.custom {
+	height: 85px;
+	max-height: 85px;
+}
+.dropdown-color .preset {
+	flex: 0 0 auto !important;
+	height: 20px;
+	width: 20px;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-color: rgba(0,0,0,0.3);
+	border-radius: 3px;
+	margin: 5px;
+	min-height: 20px !important;
+	position: relative;
+
+	will-change: border-color, opacity, background-color;
+	transition: border-color 0.2s, opacity 0.2s, background-color 0.2s;
+}
+.s3-dropdown.disabled .preset {
+	opacity: 0;
+}
+.preset.no-color {
+	position: absolute;
+    right: 4px;
+    top: 155px;
+    overflow: hidden;
+}
+.preset.no-color::after {
+    content: '';
+    background: #c83200;
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-image: url(../img_ui/disable_palette.svg);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.preset.add-color {
+	border: 1px solid #5d5d5d;
+}
+.preset.add-color::before {
+    content: '';
+    color: #5d5d5d;
+    width: 18px;
+    height: 18px;
+    display: block;
+	background-image: url(../img_ui/plus.svg);
+    background-size: 8px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.dropdown-color .s3-dropdown .selected {
+	overflow: unset;
+}
+.selected .preset {
+	position: relative;
+	top: -1px;
+	left: -3px;
+	margin: 0;
+}
+.s3-options .preset:hover {
+	border-color: #fff;
+	cursor: pointer;
+}
+.s3-options .preset:active {
+	opacity: 0.7;
+}
+.s3-options .preset.add-color:hover {
+	border-color: #44d62c;
+}
+.s3-options .preset.add-color:active {
+	background-color: rgba(255,255,255,0.1) !important;
+}
+.s3-options .preset.selected {
+	border-color: #fff;
+}
+.s3-options .preset.selected::before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.7), inset 0px 0px 2px 1px rgba(0,0,0,0.7);
+    display: block;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+	z-index: 1;
+}
+#colorDrop1 {
+	max-height: 28px;
+}
+.color-opts {
+	flex-direction: column;
+}
+.cp-chunk {
+	max-height: 49px;
+}
+
+/* right click */
+.right-click {
+	width: 90px;
+	min-width: 90px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #111111;
+	border: 1px solid #5d5d5d;
+	z-index: 99;
+	height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+
+    will-change: visibility, opacity, height;
+    transition: visibility 0s, opacity 0.3s linear, height 0.2s;
+}
+.right-click.show {
+    opacity: 1;
+    visibility: visible;
+	height: 58px;
+	z-index: 103;
+}
+.right-click > div {
+	height: 29px;
+	text-transform: capitalize;
+	padding: 6px 10px;
+}
+.right-click > div:hover {
+	background-color: rgba(255,255,255,0.1);
+	cursor: pointer;
+}

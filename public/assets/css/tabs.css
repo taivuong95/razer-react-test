@@ -1,0 +1,174 @@
+.modes-tab {
+	border: 1px solid #5d5d5d;
+	float: left;
+	position: relative;
+}
+.modes-tab.direction {
+	min-width: 50px;
+	margin-top: 5px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20px;
+}
+.modes-tabs {
+    min-height: 27px;
+    min-width: 180px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.modes-tab {
+	min-width: 90px;
+	background-color: #111;
+	font-size: 14px;
+	color: #999;
+	text-align: left;
+	line-height: 17px;
+	padding: 5px 16px 5px 16px;
+	text-align: center;
+	text-transform: uppercase;
+	height: 27px;
+	opacity: 1;
+
+	will-change: opacity, color, background-color, border-color, background-image;
+	transition: opacity .1s, color .2s, background-color .2s, border-color .2s, background-image .2s;
+}
+.modes-tabs > div:nth-child(1) { 
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.modes-tabs > div:last-child { 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+.modes-tabs.dual > div:nth-child(2) { 
+	left: -1px;
+}
+.modes-tabs.dual:hover .modes-tab {
+	border-color: #44d62c;
+	/*background-color: rgba(255,255,255,.1);*/
+	cursor: pointer;
+}
+.modes-tabs.dual:active .modes-tab {
+	background-color: #2a2a2a;
+}
+.modes-tabs.dual:active .modes-tab.active {
+	background-color: #57DA42;
+}
+.modes-tab.active {
+	background-color: #44d62c;
+	color: #111;
+}
+.modes-tab.line2 {
+	top: -1px;
+}
+.modes-area {
+	display: none;
+}
+.modes-area.active {
+	display: block;
+}
+.modes-area .body-text {
+	margin-bottom: 20px !important;
+}
+.modes-area .dropdown-area {
+	width: 150px;
+	margin-left: 0 !important;
+	/*margin-bottom: 20px !important;*/
+}
+
+.dir-left {
+	background-image: url('../img_ui/icon_direction_left_999.svg');
+}
+.dir-left.active {
+	background-image: url('../img_ui/icon_direction_left.svg');
+}
+.dir-right {
+	background-image: url('../img_ui/icon_direction_right_999.svg');
+}
+.dir-right.active {
+	background-image: url('../img_ui/icon_direction_right.svg');
+}
+.dir-up {
+	background-image: url('../img_ui/icon_direction_up_999.svg');
+}
+.dir-up.active {
+	background-image: url('../img_ui/icon_direction_up.svg');
+}
+.dir-down {
+	background-image: url('../img_ui/icon_direction_down_999.svg');
+}
+.dir-down.active {
+	background-image: url('../img_ui/icon_direction_down.svg');
+}
+.dir-cw {
+	background-image: url('../img_ui/icon_direction_cw_999.svg');
+}
+.dir-cw.active {
+	background-image: url('../img_ui/icon_direction_cw.svg');
+}
+.dir-ccw {
+	background-image: url('../img_ui/icon_direction_ccw_999.svg');
+}
+.dir-ccw.active {
+	background-image: url('../img_ui/icon_direction_ccw.svg');
+}
+.dir-out {
+	background-image: url('../img_ui/icon_direction_outward_999.svg');
+}
+.dir-out.active {
+	background-image: url('../img_ui/icon_direction_outward.svg');
+}
+.dir-in {
+	background-image: url('../img_ui/icon_direction_inward_999.svg');
+}
+.dir-in.active {
+	background-image: url('../img_ui/icon_direction_inward.svg');
+}
+.modes-tabs.more {
+	border: 1px solid #5d5d5d;
+	border-radius: 3px;
+	box-sizing: content-box;
+    height: 25px;
+    max-height: 25px;
+    min-height: 25px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    min-width: 150px;
+    width: auto;
+}
+.modes-tabs.more .modes-tab {
+	flex: 0 0 auto !important;
+	width: 50px;
+	margin: 0;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	background-color: transparent;
+}
+.modes-tabs.more > div:first-child {
+	border-left-color: #5d5d5d;
+}
+.modes-tabs.more > div:last-child {
+	border-right-color: #5d5d5d;
+}
+.modes-tabs.more .modes-tab:hover {
+	/*background-color: #44d62c;*/
+	border-color: #44d62c;
+	cursor: pointer;
+}
+.modes-tabs.more .modes-tab:active {
+	background-color: rgba(255,255,255,0.1);
+	/*border-color: #44d62c;*/
+}
+.modes-tabs.more .modes-tab.active {
+	background-color: #44d62c;
+	border-color: #44d62c;
+}
+.modes-tabs.more.quad {
+    max-width: 200px;
+}
+.modes-tabs.more.hexa {
+    max-width: 300px;
+}
+.modes-tabs.more.octa {
+    max-width: 400px;
+}

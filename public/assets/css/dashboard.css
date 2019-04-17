@@ -1,0 +1,143 @@
+.body-wrapper.no-name-bar {
+	bottom: 0;
+}
+.dashboard {
+	flex-wrap: wrap;
+}
+.box-group {
+	flex: 0 0 auto !important;
+	max-width: 100%;
+	margin-bottom: 23px;
+	margin-top: 0px;
+	margin-right: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.dashboard .box {
+	flex: 0 0 auto !important;
+	height: 204px;
+	width: 290px;
+	margin: 10px;
+	position: relative;
+	top: 13px;
+	color: #ccc;
+	text-decoration: none;
+	box-sizing: border-box;
+}
+.dashboard .box .box-inner {
+	border-radius: 5px;
+	padding: 8px 20px;
+	background-color: #111111;
+	width: 290px;
+	height: 200px;
+	position: absolute;
+	top: 4px;
+
+	will-change: top;
+	transition: top 0.2s;
+}
+.dashboard .box.has-title::before {
+	content: attr(grouptitle);
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #ccc;
+	text-align: left;
+	line-height: 17px;
+	height: 17px;
+	position: absolute;
+	top: -23px;
+	left: 0;
+}
+.dashboard .box .name-tag {
+    position: absolute;
+    top: 148px;
+    width: calc(100% - 40px);
+}
+.dashboard .box .name-tag::before {
+	content: attr(name);
+	text-transform: uppercase;
+	font-size: 14px;
+	text-align: center;
+	line-height: 16px;
+	min-height: 16px;
+	height: auto;
+	max-height: 32px;
+	width: calc(100% - 0px);
+	display: block;
+
+	will-change: color;
+	transition: color 0.2s;
+}
+.dashboard .box .name-tag::after {
+	content: attr(ed-name);
+	text-transform: uppercase;
+	font-size: 12px;
+	color: #707070;
+	text-align: center;
+	line-height: 14px;
+	height: 14px;
+	display: block;
+	width: calc(100% - 0px);
+
+	will-change: color;
+	transition: color 0.2s;
+}
+.dashboard .box:hover {
+	cursor: pointer;
+}
+.dashboard .box:hover .box-inner {
+	top: 0;
+}
+.dashboard .box:hover .name-tag::before,
+.dashboard .box:hover .name-tag::after {
+	color: #44d62c;
+}
+.logo-placeholder {
+	width: 100px;
+	height: 100px;
+	background-color: #333;
+	border-radius: 50px;
+	position: absolute;
+	top: 25px;
+	left: 95px;
+}
+.prod-placeholder {
+	width: 250px;
+	height: 140px;
+	background-color: #333;
+	position: absolute;
+	top: 8px;
+	left: 20px;
+}
+.prod-img {
+	max-width: 250px;
+	max-height: 140px;
+}
+.dash-new {
+	width: 100%;
+	text-align: center;
+	opacity: 0;
+	overflow: hidden;
+	height: 0;
+
+	will-change: opacity, height;
+	transition: opacity .2s, height .2s ease;
+}
+.dash-new.show {
+	height: 127px;
+	opacity: 1;
+}
+.dash-new .title {
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	font-family: 'RazerF5';
+	font-size: 26px;
+	font-weight: 300;
+	color: #44d62c;
+	text-align: center;
+	line-height: 30px;
+}
+.dash-new .body-text {
+	margin-bottom: 20px;
+}

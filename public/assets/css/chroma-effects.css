@@ -1,0 +1,73 @@
+.effects-area {
+	/*align-items: flex-end;*/
+}
+.effects-area .slider-label {
+	margin-bottom: 5px;
+}
+.random-color {
+	margin-top: 45px;
+}
+.effects-area[effect=breathing],
+.effects-area[effect=starlight] { 
+	display: flex;
+}
+.effects-area[effect=warning] .has-color,
+.effects-area[effect=fire] .has-color,
+.effects-area[effect=wave] .has-color,
+.effects-area[effect=spectrum] .has-color { 
+	display: none;
+}
+.effects-area[effect=reactive] #secondColor , 
+.effects-area[effect=static] #secondColor, 
+.effects-area[effect=ripple] #secondColor { 
+	display: none;
+}
+.effects-area[effect=reactive] .random-color , 
+.effects-area[effect=static] .random-color, 
+.effects-area[effect=ripple] .random-color { 
+	display: none;
+}
+.effects-area[effect=starlight], 
+.effects-area[effect=reactive], 
+.effects-area[effect=static], 
+.effects-area[effect=ripple] { 
+	/*align-items: flex-start;*/
+}
+#chromaSync,
+#chromaSyncText {
+	opacity: 1;
+
+	will-change: opacity;
+	transition: opacity .3s;
+}
+#chromaSync.off,
+#chromaSyncText.off {
+	opacity: 0.3;
+}
+.direction-area {
+	display: none !important;
+}
+.effects-area[effect=wave] .direction-area {
+	display: flex !important;
+}
+#reactiveWarning {
+	display: none;
+}
+#starSlider,
+#reactiveSlider {
+	display: none;
+	margin-left: 10px;
+}
+.effects-area[effect=warning] #reactiveWarning,
+.effects-area[effect=starlight] #starSlider,
+.effects-area[effect=reactive] #reactiveSlider {
+	display: block;
+}
+#starSlider {
+	min-width: 230px;
+	max-width: 230px;
+}
+#starSlider .foot.mid,
+#reactiveSlider .foot.mid {
+	opacity: 1 !important;
+}

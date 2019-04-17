@@ -1,0 +1,66 @@
+.eq-container {
+	position: relative;
+	width: 860px;
+	height: 326px;
+	/*margin-bottom: 20px;*/
+	top: -7px;
+	left: 22px;
+	margin: auto;
+}
+.eq-title {
+	text-transform: capitalize;
+}
+canvas.eq-canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+canvas#eqCanvas {
+	z-index: 3;
+}
+canvas#eqCustom {
+	z-index: 2;
+}
+canvas#eqShadow {
+	z-index: 1;
+}
+.eq-data {
+	display: inline;
+}
+.eq-reset {
+	background-image: url(../img_ui/eq_reset.svg);
+	opacity: 0.85;
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	right: 10px;
+	top: 147px;
+	cursor: pointer;
+	z-index: 3;
+
+	will-change: background-image;
+	transition: background-image .3s;
+}
+.eq-reset:hover {
+	background-image: url(../img_ui/eq_reset_hover.svg);
+}
+.eq-reset:active {
+	background-image: url(../img_ui/eq_reset_active.svg);
+}
+.eq-tooltip {
+	position: absolute;
+	z-index: 999;
+	background-color: #44d62c;
+	padding: 4px 8px;
+	font-size: 12px;
+	color: #212121;
+	line-height: 14px;
+	border-radius: 3px;
+	opacity: 0;
+
+	will-change: top, left, opacity;
+	transition: top .1s ease, left 0s, opacity .3s;
+}
+.eq-tooltip.show {
+	opacity: 1;
+}

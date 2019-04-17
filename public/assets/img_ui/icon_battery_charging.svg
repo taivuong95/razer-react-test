@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 20 20" style="enable-background:new 0 0 20 20;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.3;fill:#CCCCCC;}
+	.st1{fill:#CCCCCC;}
+	.st2{fill:#44D62C;transform-origin: bottom;}
+</style>
+<path class="st0" d="M18,3h-1V2c0-0.55-0.45-1-1-1h-4c-0.55,0-1,0.45-1,1v1h-1C9.45,3,9,3.45,9,4v14c0,0.55,0.45,1,1,1h8
+	c0.55,0,1-0.45,1-1V4C19,3.45,18.55,3,18,3z M17,17h-6V5h6V17z"/>
+<polygon class="st1" points="7,3 1,10 1,11 4,12 1,19 7,12 7,11 4,10 "/>
+<rect id="batt" x="12" y="16" class="st2" width="4" height="0"/>
+<animate xlink:href="#batt" attributeName="y" from="16" to="15" dur="0.01" begin="0.5s;batt_left0.end+0.5s" fill="freeze" />
+<animate id="batt_left1" xlink:href="#batt" attributeName="height" from="0" to="1" dur="0.01" begin="0.5s;batt_left0.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="14" dur="0.01" begin="batt_left1.end+0.5s" fill="freeze" />
+<animate id="batt_left2" xlink:href="#batt" attributeName="height" to="2" dur="0.01" begin="batt_left1.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="13" dur="0.01" begin="batt_left2.end+0.5s" fill="freeze" />
+<animate id="batt_left3" xlink:href="#batt" attributeName="height" to="3" dur="0.01" begin="batt_left2.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="12" dur="0.01" begin="batt_left3.end+0.5s" fill="freeze" />
+<animate id="batt_left4" xlink:href="#batt" attributeName="height" to="4" dur="0.01" begin="batt_left3.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="11" dur="0.01" begin="batt_left4.end+0.5s" fill="freeze" />
+<animate id="batt_left5" xlink:href="#batt" attributeName="height" to="5" dur="0.01" begin="batt_left4.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="10" dur="0.01" begin="batt_left5.end+0.5s" fill="freeze" />
+<animate id="batt_left6" xlink:href="#batt" attributeName="height" to="6" dur="0.01" begin="batt_left5.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="9" dur="0.01" begin="batt_left6.end+0.5s" fill="freeze" />
+<animate id="batt_left7" xlink:href="#batt" attributeName="height" to="7" dur="0.01" begin="batt_left6.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="8" dur="0.01" begin="batt_left7.end+0.5s" fill="freeze" />
+<animate id="batt_left8" xlink:href="#batt" attributeName="height" to="8" dur="0.01" begin="batt_left7.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="7" dur="0.01" begin="batt_left8.end+0.5s" fill="freeze" />
+<animate id="batt_left9" xlink:href="#batt" attributeName="height" to="9" dur="0.01" begin="batt_left8.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="6" dur="0.01" begin="batt_left9.end+0.5s" fill="freeze" />
+<animate id="batt_left10" xlink:href="#batt" attributeName="height" to="10" dur="0.01" begin="batt_left9.end+0.5s" fill="freeze" />
+
+<animate xlink:href="#batt" attributeName="y" to="16" dur="0.01" begin="batt_left10.end+0.5s" fill="freeze" />
+<animate id="batt_left0" xlink:href="#batt" attributeName="height"  to="0" dur="0.01" begin="batt_left10.end+0.5s" fill="freeze" />
+
+</svg>
