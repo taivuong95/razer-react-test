@@ -1,8 +1,51 @@
 import React from 'react';
 import './Mic.css';
 class Mic extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listProfile: [
+        { name: 'default profile', class: 'option' },
+        { name: 'profile 2', class: 'option' },
+        { name: 'profile 3', class: 'option' },
+        { name: 'profile 4', class: 'option' },
+        { name: 'profile 5', class: 'option' },
+        { name: 'profile 6', class: 'option' },
+        { name: 'profile 7', class: 'option' },
+        { name: 'profile 8', class: 'option' },
+      ],
+      itemSelected: {},
+      isClick: false,
+      isExpand: false,
+    };
+    this.toggle = this.toggle.bind(this);
+    this.toggleExpand = this.toggleExpand.bind(this);
+    this.addProfile = this.addProfile.bind(this);
+  }
+
+  toggle = () => {
+    this.setState({
+      isClick: !this.state.isClick,
+    });
+  };
+
+  toggleExpand = () => {
+    this.setState({
+      isExpand: !this.state.isExpand,
+    });
+  };
+
+  addProfile = () => {
+    const newProfile = { name: 'New Profile', class: 'option selected' };
+    this.state.listProfile.push(newProfile);
+    this.setState({
+      listProfile: this.state.listProfile,
+      itemSelected: newProfile,
+    });
+  };
   componentDidMount() {
-    window.test();
+    window.init();
   }
 
   render() {
@@ -47,25 +90,59 @@ class Mic extends React.Component {
             <input type="text" name="profile" id="profileEdit" maxLength="25" />
 
             <div className="dropdown-area">
-              <div id="profileDrop" className="s3-dropdown">
-                <div className="selected">profile 5</div>
+              <div
+                id="profileDrop"
+                onClick={e => {
+                  e.stopPropagation();
+                  this.toggleExpand();
+                }}
+                className={
+                  this.state.isExpand ? 's3-dropdown expand' : 's3-dropdown'
+                }
+              >
+                <div className="selected">{this.state.itemSelected.name}</div>
                 <div className="icon expand" />
               </div>
-              <div id="profileDropOpt" className="s3-options flex">
-                <div className="option">default profile</div>
+              <div
+                id="profileDropOpt"
+                className={
+                  this.state.isExpand
+                    ? 's3-options flex expand'
+                    : 's3-options flex '
+                }
+              >
+                {(this.state.listProfile || []).map((listItem, index) => {
+                  return (
+                    <div key={index} className={listItem.class}>
+                      {listItem.name}
+                    </div>
+                  );
+                })}
+                {/* <div className="option">default profile</div>
                 <div className="option">profile 2</div>
                 <div className="option">profile 3</div>
                 <div className="option">profile 4</div>
                 <div className="option selected">profile 5</div>
                 <div className="option">profile 6</div>
                 <div className="option">profile 7</div>
-                <div className="option">profile 8</div>
+                <div className="option">profile 8</div> */}
               </div>
             </div>
 
-            <div className="dots3 hover-border" id="profileMenuToggle">
-              <div className="profile-act" id="profileMenu">
-                <div className="act action">add</div>
+            <div
+              className="dots3 hover-border"
+              id="profileMenuToggle"
+              onClick={this.toggle}
+            >
+              <div
+                className={
+                  this.state.isClick ? 'profile-act show' : 'profile-act '
+                }
+                id="profileMenu"
+              >
+                <div className="act action" onClick={this.addProfile}>
+                  add
+                </div>
                 <div className="act action">import</div>
                 <div className="act divider" />
                 <div className="act action">rename</div>
