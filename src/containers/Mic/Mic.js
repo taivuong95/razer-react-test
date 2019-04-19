@@ -1,56 +1,75 @@
 import React from 'react';
-import './Mic.css';
+import classes from './Mic.css';
 class Mic extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      listProfile: [
-        { name: 'default profile', class: 'option' },
-        { name: 'profile 2', class: 'option' },
-        { name: 'profile 3', class: 'option' },
-        { name: 'profile 4', class: 'option' },
-        { name: 'profile 5', class: 'option' },
-        { name: 'profile 6', class: 'option' },
-        { name: 'profile 7', class: 'option' },
-        { name: 'profile 8', class: 'option' },
-      ],
-      itemSelected: {},
-      isClick: false,
-      isExpand: false,
-    };
-    this.toggle = this.toggle.bind(this);
-    this.toggleExpand = this.toggleExpand.bind(this);
-    this.addProfile = this.addProfile.bind(this);
-  }
-
-  toggle = () => {
-    this.setState({
-      isClick: !this.state.isClick,
-    });
-  };
-
-  toggleExpand = () => {
-    this.setState({
-      isExpand: !this.state.isExpand,
-    });
-  };
-
-  addProfile = () => {
-    const newProfile = { name: 'New Profile', class: 'option selected' };
-    this.state.listProfile.push(newProfile);
-    this.setState({
-      listProfile: this.state.listProfile,
-      itemSelected: newProfile,
-    });
-  };
   componentDidMount() {
     window.init();
   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isClick: false,
+      hasDelete: false,
+      itemSelected: { id: 5, name: 'profile 5', class: 'option' },
+      profileArr: [
+        { id: 1, name: 'Default profile', class: 'option' },
+        { id: 2, name: 'profile 2', class: 'option' },
+        { id: 3, name: 'profile 3', class: 'option' },
+        { id: 4, name: 'profile 4', class: 'option' },
+        { id: 5, name: 'profile 5', class: 'option' },
+        { id: 6, name: 'profile 6', class: 'option' },
+        { id: 7, name: 'profile 7', class: 'option' },
+      ],
+    };
+    this.toggle = this.toggle.bind(this);
+    this.handleAddList = this.handleAddList.bind(this);
+    this.deleteToggle = this.deleteToggle.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
+    this.changeSelected = this.changeSelected.bind(this);
+  }
+
+  toggle = () => {
+    this.setState({ isClick: !this.state.isClick });
+  };
+
+  deleteToggle = () => {
+    this.setState({ hasDelete: !this.state.hasDelete });
+  };
+
+  handleAddList() {
+    let lists = this.state.profileArr;
+    let pro = {
+      id: this.state.profileArr.length + 1,
+      name: 'New Profile',
+      class: 'option selected',
+    };
+    lists.push(pro);
+    lists[this.state.profileArr.length - 2].class = 'option';
+    // assign a name of list to item list
+    this.setState({
+      profileArr: lists,
+      itemSelected: pro,
+    });
+  }
+
+  confirmDelete() {
+    this.setState({ hasDelete: !this.state.hasDelete });
+  }
+
+  changeSelected = () => {
+    let lists = this.state.profileArr;
+    lists.forEach(element => {
+      if (element.class === 'selected') {
+        this.setState({
+          itemSelected: element,
+        });
+      }
+    });
+  };
 
   render() {
     return (
-      <div className="main-container">
+      // <div className="main-container">
+      <React.Fragment>
         <div className="nav-tabs flex">
           <div className="nav arrow back" />
           <div className="nav arrow forward disabled" />
@@ -90,57 +109,45 @@ class Mic extends React.Component {
             <input type="text" name="profile" id="profileEdit" maxLength="25" />
 
             <div className="dropdown-area">
-              <div
-                id="profileDrop"
-                onClick={e => {
-                  e.stopPropagation();
-                  this.toggleExpand();
-                }}
-                className={
-                  this.state.isExpand ? 's3-dropdown expand' : 's3-dropdown'
-                }
-              >
+              <div id="profileDrop" className="s3-dropdown">
                 <div className="selected">{this.state.itemSelected.name}</div>
                 <div className="icon expand" />
               </div>
-              <div
-                id="profileDropOpt"
-                className={
-                  this.state.isExpand
-                    ? 's3-options flex expand'
-                    : 's3-options flex '
-                }
-              >
-                {(this.state.listProfile || []).map((listItem, index) => {
+              <div id="profileDropOpt" className="s3-options flex">
+                {/* <div className="option">default profile</div>
+<div className="option" on>profile 2</div>
+<div className="option">profile 3</div>
+<div className="option">profile 4</div>
+<div className="option selected">profile 5</div>
+<div className="option">profile 6</div>
+<div className="option">profile 7</div>
+<div className="option">profile 8</div> */}
+                {this.state.profileArr.map(function(d) {
                   return (
-                    <div key={index} className={listItem.class}>
-                      {listItem.name}
+                    <div className={d.class} key={d.id}>
+                      {d.name}
                     </div>
                   );
                 })}
-                {/* <div className="option">default profile</div>
-                <div className="option">profile 2</div>
-                <div className="option">profile 3</div>
-                <div className="option">profile 4</div>
-                <div className="option selected">profile 5</div>
-                <div className="option">profile 6</div>
-                <div className="option">profile 7</div>
-                <div className="option">profile 8</div> */}
               </div>
             </div>
 
             <div
-              className="dots3 hover-border"
+              className={
+                this.state.isClick
+                  ? 'dots3 hover-border active'
+                  : 'dots3 hover-border'
+              }
               id="profileMenuToggle"
               onClick={this.toggle}
             >
               <div
                 className={
-                  this.state.isClick ? 'profile-act show' : 'profile-act '
+                  this.state.isClick ? 'profile-act show' : 'profile-act'
                 }
                 id="profileMenu"
               >
-                <div className="act action" onClick={this.addProfile}>
+                <div className="act action" onClick={this.handleAddList}>
                   add
                 </div>
                 <div className="act action">import</div>
@@ -149,19 +156,34 @@ class Mic extends React.Component {
                 <div className="act action">duplicate</div>
                 <div className="act action">export</div>
                 <div className="act divider" />
-                <div className="act action" id="deleteAction">
+                <div
+                  className="act action"
+                  id="deleteAction"
+                  onClick={this.deleteToggle}
+                >
                   delete
                 </div>
               </div>
             </div>
 
-            <div id="deleteAlert" className="flex alert profile-del">
+            <div
+              id="deleteAlert"
+              className={
+                this.state.hasDelete
+                  ? 'flex alert profile-del show'
+                  : 'flex alert profile-del'
+              }
+            >
               <div className="title">delete profile</div>
               <div className="body-text t-center">
                 You're about to delete this profile. All bindings in this
                 profile will be deleted.
               </div>
-              <div className="thx-btn" id="deleteConfirm">
+              <div
+                className="thx-btn"
+                id="deleteConfirm"
+                onClick={this.confirmDelete}
+              >
                 delete
               </div>
             </div>
@@ -314,7 +336,7 @@ class Mic extends React.Component {
           </div>
         </div>
         <div className="name-bar">razer nari ultimate</div>
-      </div>
+      </React.Fragment>
     );
   }
 }
