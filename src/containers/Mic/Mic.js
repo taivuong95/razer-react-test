@@ -1,34 +1,38 @@
 import React from 'react';
 import classes from './Mic.css';
+let addCounter = 1;
+let dupCounter = 1;
 class Mic extends React.Component {
   componentDidMount() {
     window.init();
   }
   constructor(props) {
     super(props);
+
     this.state = {
       isClick: false,
+      isExpand: false,
       hasDelete: false,
-      itemSelected: { id: 5, name: 'profile 5', class: 'option' },
+      hasRename: false,
+      selectedItem: { name: 'profile 5', class: 'option selected' },
       profileArr: [
-        { id: 1, name: 'Default profile', class: 'option' },
-        { id: 2, name: 'profile 2', class: 'option' },
-        { id: 3, name: 'profile 3', class: 'option' },
-        { id: 4, name: 'profile 4', class: 'option' },
-        { id: 5, name: 'profile 5', class: 'option' },
-        { id: 6, name: 'profile 6', class: 'option' },
-        { id: 7, name: 'profile 7', class: 'option' },
+        { name: 'Default profile', class: 'option' },
+        { name: 'profile 2', class: 'option' },
+        { name: 'profile 3', class: 'option' },
+        { name: 'profile 4', class: 'option' },
+        { name: 'profile 5', class: 'option selected' },
+        { name: 'profile 6', class: 'option' },
+        { name: 'profile 7', class: 'option' },
       ],
     };
-    this.toggle = this.toggle.bind(this);
-    this.handleAddList = this.handleAddList.bind(this);
-    this.deleteToggle = this.deleteToggle.bind(this);
-    this.confirmDelete = this.confirmDelete.bind(this);
-    this.changeSelected = this.changeSelected.bind(this);
   }
 
   toggle = () => {
     this.setState({ isClick: !this.state.isClick });
+  };
+
+  changeExpand = () => {
+    this.setState({ isExpand: !this.state.isExpand });
   };
 
   deleteToggle = () => {
@@ -37,32 +41,95 @@ class Mic extends React.Component {
 
   handleAddList() {
     let lists = this.state.profileArr;
+    let listHTML = document.getElementsByClassName('option');
+    for (var i = 0; i < listHTML.length; i++) {
+      listHTML[i].className = 'option';
+    }
+
     let pro = {
-      id: this.state.profileArr.length + 1,
-      name: 'New Profile',
+      name: 'New Profile ' + '(' + addCounter + ')',
       class: 'option selected',
     };
     lists.push(pro);
-    lists[this.state.profileArr.length - 2].class = 'option';
-    // assign a name of list to item list
+
+    addCounter++;
+
     this.setState({
       profileArr: lists,
-      itemSelected: pro,
+      selectedItem: pro,
     });
   }
+
+  onDuplicateHandler() {
+    let selectedItem = document.getElementById('itemSelected');
+    let selectedItemName = selectedItem.innerText;
+    var open = selectedItemName.lastIndexOf('(');
+    var close = selectedItemName.lastIndexOf(')');
+    if (open > 0 && close > 0 && close > open) {
+      this.dupCounter =
+        parseInt(selectedItemName.substring(open + 1, close)) + 1;
+      selectedItemName = selectedItemName.substring(0, open);
+    } else {
+      dupCounter = 1;
+    }
+
+    selectedItemName = selectedItemName + ' (' + dupCounter + ')';
+
+    let lists = this.state.profileArr;
+    let listHTML = document.getElementsByClassName('option');
+    for (var i = 0; i < listHTML.length; i++) {
+      listHTML[i].className = 'option';
+    }
+
+    let pro = {
+      name: selectedItemName,
+      class: 'option selected',
+    };
+    console.log(selectedItemName);
+
+    lists.push(pro);
+
+    dupCounter++;
+
+    this.setState({
+      profileArr: lists,
+      selectedItem: pro,
+    });
+  }
+
+  onRenameHandler = () => {
+    let selectedItem = document.getElementById('itemSelected');
+    let selectedItemName = selectedItem.innerText;
+    var profileEdit = document.getElementById('profileEdit');
+    profileEdit.value = selectedItemName;
+    profileEdit.focus();
+    profileEdit.select();
+    this.setState({ hasRename: !this.state.hasRename });
+  };
+
+  handleChange = e => {
+    console.log(e.target.value);
+  };
 
   confirmDelete() {
     this.setState({ hasDelete: !this.state.hasDelete });
   }
+  onChangeHandler = e => {
+    let selectedItem = e.target;
+    let selectedItemObj = {
+      name: selectedItem.textContent,
+    };
 
-  changeSelected = () => {
-    let lists = this.state.profileArr;
-    lists.forEach(element => {
-      if (element.class === 'selected') {
-        this.setState({
-          itemSelected: element,
-        });
-      }
+    let listHTML = document.getElementsByClassName('option');
+    for (var i = 0; i < listHTML.length; i++) {
+      listHTML[i].className = 'option';
+    }
+
+    selectedItem.className = 'option selected';
+    this.changeExpand();
+
+    this.setState({
+      selectedItem: selectedItemObj,
     });
   };
 
@@ -106,26 +173,50 @@ class Mic extends React.Component {
             <div className="loader" tooltip="Syncing Profiles" />
             <div>profile</div>
 
-            <input type="text" name="profile" id="profileEdit" maxLength="25" />
+            <input
+              type="text"
+              name="profile"
+              id="profileEdit"
+              maxLength="25"
+              className={this.state.hasRename ? 'show' : ''}
+              onChange={e => this.handleChange(e)}
+              defaultValue={this.state.selectedItem.name}
+            />
 
             <div className="dropdown-area">
-              <div id="profileDrop" className="s3-dropdown">
-                <div className="selected">{this.state.itemSelected.name}</div>
+              <div
+                id="profileDrop"
+                className={
+                  this.state.isExpand ? 's3-dropdown expand' : 's3-dropdown'
+                }
+                onClick={this.changeExpand}
+              >
+                <div className="selected" id="itemSelected">
+                  {/* {
+                    this.state.profileArr.find(e =>
+                      e.class.includes('selected')
+                    ).name
+                  } */}
+                  {this.state.selectedItem.name}
+                </div>
                 <div className="icon expand" />
               </div>
-              <div id="profileDropOpt" className="s3-options flex">
-                {/* <div className="option">default profile</div>
-<div className="option" on>profile 2</div>
-<div className="option">profile 3</div>
-<div className="option">profile 4</div>
-<div className="option selected">profile 5</div>
-<div className="option">profile 6</div>
-<div className="option">profile 7</div>
-<div className="option">profile 8</div> */}
-                {this.state.profileArr.map(function(d) {
+              <div
+                id="profileDropOpt"
+                className={
+                  this.state.isExpand
+                    ? 's3-options flex expand'
+                    : 's3-options flex '
+                }
+              >
+                {this.state.profileArr.map((item, index) => {
                   return (
-                    <div className={d.class} key={d.id}>
-                      {d.name}
+                    <div
+                      className={item.class}
+                      key={index}
+                      onClick={e => this.onChangeHandler(e)}
+                    >
+                      {item.name}
                     </div>
                   );
                 })}
@@ -147,13 +238,26 @@ class Mic extends React.Component {
                 }
                 id="profileMenu"
               >
-                <div className="act action" onClick={this.handleAddList}>
+                <div
+                  className="act action"
+                  onClick={() => this.handleAddList()}
+                >
                   add
                 </div>
                 <div className="act action">import</div>
                 <div className="act divider" />
-                <div className="act action">rename</div>
-                <div className="act action">duplicate</div>
+                <div
+                  className="act action"
+                  onClick={() => this.onRenameHandler()}
+                >
+                  rename
+                </div>
+                <div
+                  className="act action"
+                  onClick={() => this.onDuplicateHandler()}
+                >
+                  duplicate
+                </div>
                 <div className="act action">export</div>
                 <div className="act divider" />
                 <div

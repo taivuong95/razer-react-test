@@ -73,8 +73,8 @@ class Slider {
     if (!this.containerDom.classList.contains('on')) {
       return;
     }
-    if (mouseIsDown) {
-      this.updateValue();
-    }
+    // if (mouseIsDown) {
+    //   this.updateValue();
+    // }
   }
 }
