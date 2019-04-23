@@ -27,8 +27,16 @@ class Mic extends React.Component {
     };
   }
 
+  close = () => {
+    this.setState({ isClick: false });
+  };
+
   toggle = () => {
     this.setState({ isClick: !this.state.isClick });
+  };
+
+  closeExpand = () => {
+    this.setState({ isExpand: false });
   };
 
   changeExpand = () => {
@@ -97,7 +105,7 @@ class Mic extends React.Component {
     });
   }
 
-  onRenameHandler = () => {
+  onRenameClicked = () => {
     let selectedItem = document.getElementById('itemSelected');
     let selectedItemName = selectedItem.innerText;
     var profileEdit = document.getElementById('profileEdit');
@@ -107,30 +115,102 @@ class Mic extends React.Component {
     this.setState({ hasRename: !this.state.hasRename });
   };
 
-  handleChange = e => {
-    console.log(e.target.value);
+  onRenameHandler = e => {
+    if (e.keyCode === 13) {
+      let selectedItem = e.target;
+      let selectedItemObj = {
+        name: selectedItem.value,
+        class: 'option selected',
+      };
+
+      let lists = this.state.profileArr;
+
+      let found = lists.findIndex(element =>
+        element.class.includes('selected')
+      );
+      console.log(found);
+
+      lists.splice(found, 1, selectedItemObj);
+
+      selectedItem.className = 'option selected';
+
+      this.setState({
+        profileArr: lists,
+        selectedItem: selectedItemObj,
+        hasRename: !this.state.hasRename,
+      });
+    }
   };
 
-  confirmDelete() {
-    this.setState({ hasDelete: !this.state.hasDelete });
+  onDeleteHandler() {
+    // let lists = this.state.profileArr;
+    // // console.log(lists);
+    // // console.log(beforeItem);
+    // let listHTML = document.getElementsByClassName('option');
+    // for (var i = 0; i < listHTML.length; i++) {
+    //   listHTML[i].className = 'option';
+    // }
+    // let found = lists.findIndex(element => element.class.includes('selected'));
+    // let beforeItem = lists[found - 1];
+    // beforeItem.class = 'option selected';
+    // lists.splice(found, 1);
+    // this.setState({
+    //   profileArr: lists,
+    //   selectedItem: beforeItem,
+    //   hasDelete: !this.state.hasDelete,
+    // });
   }
   onChangeHandler = e => {
-    let selectedItem = e.target;
-    let selectedItemObj = {
-      name: selectedItem.textContent,
-    };
+    let lists = this.state.profileArr;
+    console.log(lists);
+
+    let oldItem = lists.find(element => element.class.includes('selected'));
+    let newItem = lists.find(
+      element => element.name.toUpperCase() === e.target.innerText.toUpperCase()
+    );
+
+    oldItem.class = 'option';
+    newItem.class = 'option selected';
+    this.changeExpand();
 
     let listHTML = document.getElementsByClassName('option');
     for (var i = 0; i < listHTML.length; i++) {
       listHTML[i].className = 'option';
     }
 
+    let selectedItem = e.target;
     selectedItem.className = 'option selected';
-    this.changeExpand();
 
     this.setState({
-      selectedItem: selectedItemObj,
+      profileArr: lists,
+      selectedItem: newItem,
     });
+
+    // let selectedItem = e.target;
+    // let selectedItemObj = {
+    //   name: selectedItem.value,
+    //   class: 'option selected',
+    // };
+
+    // let listHTML = document.getElementsByClassName('option');
+    // for (var i = 0; i < listHTML.length; i++) {
+    //   listHTML[i].className = 'option';
+    // }
+    // selectedItem.className = 'option selected';
+    // this.changeExpand();
+
+    // console.log(lists);
+    // console.log(selectedItemObj);
+    // foundItem.class = 'option';
+    // console.log(foundItem);
+
+    // lists.splice(found, 1, selectedItemObj);
+    // console.log(lists);
+
+    // this.setState({
+    //   profileArr: lists,
+    //   selectedItem: selectedItemObj,
+    // });
   };
 
   render() {
@@ -179,7 +259,7 @@ class Mic extends React.Component {
               id="profileEdit"
               maxLength="25"
               className={this.state.hasRename ? 'show' : ''}
-              onChange={e => this.handleChange(e)}
+              onKeyDown={e => this.onRenameHandler(e)}
               defaultValue={this.state.selectedItem.name}
             />
 
@@ -189,7 +269,10 @@ class Mic extends React.Component {
                 className={
                   this.state.isExpand ? 's3-dropdown expand' : 's3-dropdown'
                 }
-                onClick={this.changeExpand}
+                onClick={() => {
+                  this.close();
+                  this.changeExpand();
+                }}
               >
                 <div className="selected" id="itemSelected">
                   {/* {
@@ -230,7 +313,10 @@ class Mic extends React.Component {
                   : 'dots3 hover-border'
               }
               id="profileMenuToggle"
-              onClick={this.toggle}
+              onClick={() => {
+                this.closeExpand();
+                this.toggle();
+              }}
             >
               <div
                 className={
@@ -248,7 +334,7 @@ class Mic extends React.Component {
                 <div className="act divider" />
                 <div
                   className="act action"
-                  onClick={() => this.onRenameHandler()}
+                  onClick={() => this.onRenameClicked()}
                 >
                   rename
                 </div>
@@ -286,7 +372,7 @@ class Mic extends React.Component {
               <div
                 className="thx-btn"
                 id="deleteConfirm"
-                onClick={this.confirmDelete}
+                onClick={() => this.onDeleteHandler()}
               >
                 delete
               </div>
