@@ -128,9 +128,14 @@ class Mic extends React.Component {
       let found = lists.findIndex(element =>
         element.class.includes('selected')
       );
-      console.log(found);
+      console.log(selectedItem);
 
       lists.splice(found, 1, selectedItemObj);
+
+      let listHTML = document.getElementsByClassName('option');
+      for (var i = 0; i < listHTML.length; i++) {
+        listHTML[i].className = 'option';
+      }
 
       selectedItem.className = 'option selected';
 
@@ -165,13 +170,24 @@ class Mic extends React.Component {
     console.log(lists);
 
     let oldItem = lists.find(element => element.class.includes('selected'));
+    let oldIndex = lists.findIndex(element =>
+      element.class.includes('selected')
+    );
     let newItem = lists.find(
+      element => element.name.toUpperCase() === e.target.innerText.toUpperCase()
+    );
+    let newIndex = lists.findIndex(
       element => element.name.toUpperCase() === e.target.innerText.toUpperCase()
     );
 
     oldItem.class = 'option';
-    newItem.class = 'option selected';
+    let tempNewItem = { ...newItem, class: 'option selected' };
+    lists.splice(newIndex, 1, tempNewItem);
     this.changeExpand();
+
+    console.log(oldItem);
+    console.log(tempNewItem);
+    console.log(lists);
 
     let listHTML = document.getElementsByClassName('option');
     for (var i = 0; i < listHTML.length; i++) {
@@ -183,7 +199,7 @@ class Mic extends React.Component {
 
     this.setState({
       profileArr: lists,
-      selectedItem: newItem,
+      selectedItem: tempNewItem,
     });
 
     // let selectedItem = e.target;
