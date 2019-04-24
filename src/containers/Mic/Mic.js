@@ -49,10 +49,9 @@ class Mic extends React.Component {
 
   handleAddList() {
     let lists = this.state.profileArr;
-    let listHTML = document.getElementsByClassName('option');
-    for (var i = 0; i < listHTML.length; i++) {
-      listHTML[i].className = 'option';
-    }
+    lists.forEach(element => {
+      element.class = 'option';
+    });
 
     let pro = {
       name: 'New Profile ' + '(' + addCounter + ')',
@@ -84,10 +83,10 @@ class Mic extends React.Component {
     selectedItemName = selectedItemName + ' (' + dupCounter + ')';
 
     let lists = this.state.profileArr;
-    let listHTML = document.getElementsByClassName('option');
-    for (var i = 0; i < listHTML.length; i++) {
-      listHTML[i].className = 'option';
-    }
+
+    lists.forEach(element => {
+      element.class = 'option';
+    });
 
     let pro = {
       name: selectedItemName,
@@ -117,6 +116,7 @@ class Mic extends React.Component {
 
   onRenameHandler = e => {
     if (e.keyCode === 13) {
+      // Tao ra phan tu moi
       let selectedItem = e.target;
       let selectedItemObj = {
         name: selectedItem.value,
@@ -125,19 +125,12 @@ class Mic extends React.Component {
 
       let lists = this.state.profileArr;
 
-      let found = lists.findIndex(element =>
+      let oldIndex = lists.findIndex(element =>
         element.class.includes('selected')
       );
       console.log(selectedItem);
 
-      lists.splice(found, 1, selectedItemObj);
-
-      let listHTML = document.getElementsByClassName('option');
-      for (var i = 0; i < listHTML.length; i++) {
-        listHTML[i].className = 'option';
-      }
-
-      selectedItem.className = 'option selected';
+      lists.splice(oldIndex, 1, selectedItemObj);
 
       this.setState({
         profileArr: lists,
@@ -148,22 +141,23 @@ class Mic extends React.Component {
   };
 
   onDeleteHandler() {
-    // let lists = this.state.profileArr;
-    // // console.log(lists);
-    // // console.log(beforeItem);
-    // let listHTML = document.getElementsByClassName('option');
-    // for (var i = 0; i < listHTML.length; i++) {
-    //   listHTML[i].className = 'option';
-    // }
-    // let found = lists.findIndex(element => element.class.includes('selected'));
-    // let beforeItem = lists[found - 1];
-    // beforeItem.class = 'option selected';
-    // lists.splice(found, 1);
-    // this.setState({
-    //   profileArr: lists,
-    //   selectedItem: beforeItem,
-    //   hasDelete: !this.state.hasDelete,
-    // });
+    let beforeItem;
+    let lists = this.state.profileArr;
+
+    let found = lists.findIndex(element => element.class.includes('selected'));
+    if (found === 0) beforeItem = lists[found + 1];
+    else beforeItem = lists[found - 1];
+
+    beforeItem.class = 'option selected';
+    lists.splice(found, 1);
+    if (lists.length === 1) {
+      document.getElementById('profileDrop').className = 's3-dropdown disabled';
+    }
+    this.setState({
+      profileArr: lists,
+      selectedItem: beforeItem,
+      hasDelete: !this.state.hasDelete,
+    });
   }
   onChangeHandler = e => {
     let lists = this.state.profileArr;
@@ -185,15 +179,6 @@ class Mic extends React.Component {
     lists.splice(newIndex, 1, tempNewItem);
     this.changeExpand();
 
-    console.log(oldItem);
-    console.log(tempNewItem);
-    console.log(lists);
-
-    let listHTML = document.getElementsByClassName('option');
-    for (var i = 0; i < listHTML.length; i++) {
-      listHTML[i].className = 'option';
-    }
-
     let selectedItem = e.target;
     selectedItem.className = 'option selected';
 
@@ -201,32 +186,6 @@ class Mic extends React.Component {
       profileArr: lists,
       selectedItem: tempNewItem,
     });
-
-    // let selectedItem = e.target;
-    // let selectedItemObj = {
-    //   name: selectedItem.value,
-    //   class: 'option selected',
-    // };
-
-    // let listHTML = document.getElementsByClassName('option');
-    // for (var i = 0; i < listHTML.length; i++) {
-    //   listHTML[i].className = 'option';
-    // }
-    // selectedItem.className = 'option selected';
-    // this.changeExpand();
-
-    // console.log(lists);
-    // console.log(selectedItemObj);
-    // foundItem.class = 'option';
-    // console.log(foundItem);
-
-    // lists.splice(found, 1, selectedItemObj);
-    // console.log(lists);
-
-    // this.setState({
-    //   profileArr: lists,
-    //   selectedItem: selectedItemObj,
-    // });
   };
 
   render() {
