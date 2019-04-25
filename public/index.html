@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta
+    <!-- <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    /> -->
     <meta name="theme-color" content="#000000" />
     <!--
 manifest.json provides metadata used when your web app is installed on a
@@ -107,48 +107,6 @@ Learn how to configure a non-root public URL by running `npm run build`.
       }
     </style>
 
-    <!-- <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/calibrator.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/chroma-effects.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/customize.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/dashboard.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/equalizer.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/picker.css"
-    />
-
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="%PUBLIC_URL%/assets/css/tabs.css"
-    /> -->
-
     <title>React App</title>
   </head>
 
@@ -167,50 +125,12 @@ To create a production bundle, use `npm run build` or `yarn build`.
 -->
 
     <!--INCLIDE JS FILE-->
-    <!-- <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/calibrator.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/canvas-redraw.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/chart.bundle.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/chroma-effects.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/dropdown_old.js"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/equalizer.js"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/picker.js"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/tabs.js"
-    ></script> -->
 
     <script
       type="text/javascript"
       src="%PUBLIC_URL%/assets/js/main.js"
     ></script>
-    <script
-      type="text/javascript"
-      src="%PUBLIC_URL%/assets/js/dropdown.js"
-    ></script>
+
     <script
       type="text/javascript"
       src="%PUBLIC_URL%/assets/js/switch.js"
@@ -225,7 +145,7 @@ To create a production bundle, use `npm run build` or `yarn build`.
       function init() {
         var mouseIsDown = false;
 
-        const pf = new Dropdown('profileDrop');
+        // const pf = new Dropdown('profileDrop');
 
         const switchSet = [
           { id: 'swPhone', target: 'slPhone', toggle: 'on' },

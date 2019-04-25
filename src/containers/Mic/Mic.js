@@ -1,10 +1,20 @@
 import React from 'react';
-import classes from './Mic.css';
+
+import Widget from '../../components/Widget/Widget';
 let addCounter = 1;
 let dupCounter = 1;
 class Mic extends React.Component {
   componentDidMount() {
     window.init();
+    this.closeDropDownWhenClickOutSideLeft('profileDrop', () =>
+      this.closeExpand()
+    );
+    this.closeDropDownWhenClickOutSideLeft('profileMenuToggle', () =>
+      this.close()
+    );
+    // this.closeDropDownWhenClickOutSideLeft('deleteAlert', () => {
+    //   this.closeDelete();
+    // });
   }
   constructor(props) {
     super(props);
@@ -27,6 +37,22 @@ class Mic extends React.Component {
     };
   }
 
+  closeDropDownWhenClickOutSideLeft = (id, fn) => {
+    document.addEventListener('click', evt => {
+      const flyoutElement = document.getElementById(id);
+      let targetElement = evt.target; // clicked element
+      do {
+        if (targetElement == flyoutElement) {
+          // Do nothing, just return.
+          return;
+        }
+        // Go up the DOM.
+        targetElement = targetElement.parentNode;
+      } while (targetElement);
+      fn();
+    });
+  };
+
   close = () => {
     this.setState({ isClick: false });
   };
@@ -37,6 +63,10 @@ class Mic extends React.Component {
 
   closeExpand = () => {
     this.setState({ isExpand: false });
+  };
+
+  closeDelete = () => {
+    this.setState({ hasDelete: false });
   };
 
   changeExpand = () => {
@@ -192,42 +222,10 @@ class Mic extends React.Component {
     return (
       // <div className="main-container">
       <React.Fragment>
-        <div className="nav-tabs flex">
-          <div className="nav arrow back" />
-          <div className="nav arrow forward disabled" />
-
-          <a className="nav" href="./sound.html">
-            sound
-          </a>
-          <a className="nav" href="./mixer.html">
-            mixer
-          </a>
-          <a className="nav" href="./enhancement.html">
-            enhancement
-          </a>
-          <a className="nav" href="./eq.html">
-            eq
-          </a>
-          <a className="nav active" href="./mic.html">
-            mic
-          </a>
-          <a className="nav" href="./lighting.html">
-            lighting
-          </a>
-          <a className="nav" href="./power.html">
-            power
-          </a>
-
-          <div className="user">
-            <div className="avatar" />
-          </div>
-        </div>
-
         <div className="body-wrapper scrollable">
           <div className="profile-bar flex">
             <div className="loader" tooltip="Syncing Profiles" />
             <div>profile</div>
-
             <input
               type="text"
               name="profile"
@@ -250,11 +248,6 @@ class Mic extends React.Component {
                 }}
               >
                 <div className="selected" id="itemSelected">
-                  {/* {
-                    this.state.profileArr.find(e =>
-                      e.class.includes('selected')
-                    ).name
-                  } */}
                   {this.state.selectedItem.name}
                 </div>
                 <div className="icon expand" />
@@ -435,6 +428,7 @@ class Mic extends React.Component {
                   />
                 </div>
               </div>
+
               <div className="widget" id="micEnhance">
                 <div className="help" />
                 <div className="tip">
