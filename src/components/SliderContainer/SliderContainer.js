@@ -1,18 +1,14 @@
 import React from 'react';
+import Slider from '../Slider/Slider';
 
 const SliderContainer = props => {
   return (
-    <div className="slider-container" id={props.id}>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        defaultValue="50"
-        step="1"
-        className="slider"
-        id="slSideRange"
-      />
-    </div>
+    <>
+      <div className="h2-title">{props.sliderContainTitle}</div>
+      <div className="slider-container" id={props.idSliderContain}>
+        <Slider idSlider={props.idSlider} />
+      </div>
+    </>
   );
 };
 

@@ -20,7 +20,7 @@ class Header extends Component {
         <a className="nav" href="./eq.html">
           eq
         </a>
-        <NavLink className="nav" to="/mic">
+        <NavLink activeClassName="active" className="nav " to="/mic">
           mic
         </NavLink>
         <a className="nav" href="./lighting.html">

@@ -1,18 +1,19 @@
 import React from 'react';
 
 import Widget from '../../components/Widget/Widget';
+import SwitchSlider from '../../components/SwitchSlider/SwitchSlider';
+import SliderContainer from '../../components/SliderContainer/SliderContainer';
 let addCounter = 1;
 let dupCounter = 1;
+let deleteClick = 0;
 class Mic extends React.Component {
   componentDidMount() {
     window.init();
-    this.closeDropDownWhenClickOutSideLeft('profileDrop', () =>
-      this.closeExpand()
-    );
-    this.closeDropDownWhenClickOutSideLeft('profileMenuToggle', () =>
-      this.close()
-    );
-    // this.closeDropDownWhenClickOutSideLeft('deleteAlert', () => {
+    this.closeDropDownWhenClickOutSide('profileDrop', () => {
+      this.closeExpand();
+    });
+    this.closeDropDownWhenClickOutSide('profileMenuToggle', () => this.close());
+    // this.closeDropDownWhenClickOutSide('deleteAlert', () => {
     //   this.closeDelete();
     // });
   }
@@ -37,9 +38,9 @@ class Mic extends React.Component {
     };
   }
 
-  closeDropDownWhenClickOutSideLeft = (id, fn) => {
+  closeDropDownWhenClickOutSide = (args, fn) => {
     document.addEventListener('click', evt => {
-      const flyoutElement = document.getElementById(id);
+      const flyoutElement = document.getElementById(args);
       let targetElement = evt.target; // clicked element
       do {
         if (targetElement == flyoutElement) {
@@ -67,6 +68,10 @@ class Mic extends React.Component {
 
   closeDelete = () => {
     this.setState({ hasDelete: false });
+  };
+
+  closeRename = () => {
+    this.setState({ hasRename: false });
   };
 
   changeExpand = () => {
@@ -139,8 +144,8 @@ class Mic extends React.Component {
     let selectedItemName = selectedItem.innerText;
     var profileEdit = document.getElementById('profileEdit');
     profileEdit.value = selectedItemName;
-    profileEdit.focus();
-    profileEdit.select();
+    // profileEdit.focus();
+    // profileEdit.select();
     this.setState({ hasRename: !this.state.hasRename });
   };
 
@@ -189,6 +194,36 @@ class Mic extends React.Component {
       hasDelete: !this.state.hasDelete,
     });
   }
+
+  handleFocus = e => {
+    e.target.select();
+  };
+
+  closeFocus = () => {
+    // Tao ra phan tu moi
+    var profileEdit = document.getElementById('profileEdit');
+    let selectedItem = profileEdit;
+    let selectedItemObj = {
+      name: selectedItem.value,
+      class: 'option selected',
+    };
+
+    let lists = this.state.profileArr;
+
+    let oldIndex = lists.findIndex(element =>
+      element.class.includes('selected')
+    );
+    console.log(selectedItem);
+
+    lists.splice(oldIndex, 1, selectedItemObj);
+
+    this.setState({
+      profileArr: lists,
+      selectedItem: selectedItemObj,
+      hasRename: !this.state.hasRename,
+    });
+    this.closeRename();
+  };
   onChangeHandler = e => {
     let lists = this.state.profileArr;
     console.log(lists);
@@ -218,6 +253,10 @@ class Mic extends React.Component {
     });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    this._input.focus();
+  }
+
   render() {
     return (
       // <div className="main-container">
@@ -234,6 +273,10 @@ class Mic extends React.Component {
               className={this.state.hasRename ? 'show' : ''}
               onKeyDown={e => this.onRenameHandler(e)}
               defaultValue={this.state.selectedItem.name}
+              onFocus={this.handleFocus}
+              autofocus="true"
+              onBlur={this.closeFocus}
+              ref={c => (this._input = c)}
             />
 
             <div className="dropdown-area">
@@ -331,6 +374,8 @@ class Mic extends React.Component {
                   ? 'flex alert profile-del show'
                   : 'flex alert profile-del'
               }
+              // tabIndex={0}
+              // onBlur={this.closeDelete}
             >
               <div className="title">delete profile</div>
               <div className="body-text t-center">
@@ -352,82 +397,51 @@ class Mic extends React.Component {
 
           <div className="body-widgets flex">
             <div className="widget-col col-left flex">
-              <div className="widget" id="micPhone">
-                <div className="help" />
-                <div className="tip">
-                  I'm just a tooltip. I'm just a tooltip. I'm just a tooltip.
-                  I'm just a tooltip. I'm just a tooltip.
-                </div>
+              <Widget idWidget="micPhone">
+                <SwitchSlider
+                  classSwitch="title"
+                  idSwitch="swPhone"
+                  nameSwitch="microphone"
+                />
 
-                <div className="title">
-                  microphone
-                  <div className="switch on switch-slider" id="swPhone">
-                    <div className="handle" />
-                  </div>
-                </div>
+                <SliderContainer
+                  sliderContainTitle="mic volume"
+                  idSliderContain="slPhone"
+                  idSlider="slPhoneRange"
+                />
 
-                <div className="h2-title">mic volume</div>
-                <div className="slider-container" id="slPhone">
-                  <input
-                    type="range"
-                    min="10"
-                    max="100"
-                    defaultValue="55"
-                    step="1"
-                    className="slider"
-                    id="slPhoneRange"
-                  />
-                </div>
+                <SwitchSlider
+                  classSwitch="h2-title mt20"
+                  idSwitch="swSensi"
+                  nameSwitch=" mic sensitivity"
+                />
 
-                <div className="h2-title mt20">
-                  mic sensitivity
-                  <div className="switch on switch-slider" id="swSensi">
-                    <div className="handle" />
-                  </div>
-                </div>
                 <div className="h2-body">
                   Adjust this setting to remove unwanted background noise or
                   increase the amount of mic output heard
                 </div>
-                <div className="slider-container" id="slSensi">
-                  <input
-                    type="range"
-                    min="10"
-                    max="100"
-                    defaultValue="55"
-                    step="1"
-                    className="slider"
-                    id="slSensiRange"
-                  />
-                </div>
-              </div>
+                <SliderContainer
+                  sliderContainTitle=""
+                  idSliderContain="slSensi"
+                  idSlider="slSensiRange"
+                />
+              </Widget>
             </div>
 
             <div className="widget-col col-right flex">
-              <div className="widget" id="micSidetone">
-                <div className="help" />
-                <div className="tip">
-                  I'm just a tooltip. I'm just a tooltip. I'm just a tooltip.
-                  I'm just a tooltip. I'm just a tooltip.
-                </div>
-                <div className="title">
-                  sidetone
-                  <div className="switch switch-slider" id="swSide">
-                    <div className="handle" />
-                  </div>
-                </div>
-                <div className="slider-container" id="slSide">
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    defaultValue="50"
-                    step="1"
-                    className="slider"
-                    id="slSideRange"
-                  />
-                </div>
-              </div>
+              <Widget idWidget="micSidetone">
+                <SwitchSlider
+                  classSwitch="title"
+                  idSwitch="swSide"
+                  nameSwitch="sidetone"
+                />
+
+                <SliderContainer
+                  sliderContainTitle=""
+                  idSliderContain="slSide"
+                  idSlider="slSideRange"
+                />
+              </Widget>
 
               <div className="widget" id="micEnhance">
                 <div className="help" />
@@ -473,7 +487,7 @@ class Mic extends React.Component {
                   />
                 </div>
 
-                <div className="check-item">
+                {/* <div className="check-item">
                   <input type="checkbox" id="checkClarity" />
                   <label htmlFor="checkClarity" className="check-box">
                     <div className="check-text">Voice Clarity</div>
@@ -489,7 +503,7 @@ class Mic extends React.Component {
                     className="slider"
                     id="slClarityRange"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -170,7 +170,7 @@ To create a production bundle, use `npm run build` or `yarn build`.
 
         const slider4 = new Slider('slNorm');
         const slider5 = new Slider('slAmb');
-        const slider6 = new Slider('slClarity');
+        // const slider6 = new Slider('slClarity');
 
         for (var i = 0; i < switchSet.length; i++) {
           let obj = sw[i];
@@ -179,9 +179,7 @@ To create a production bundle, use `npm run build` or `yarn build`.
           });
         }
 
-        window.onresize = function(e) {
-          //
-        };
+        
         window.onmousedown = function(e) {
           mouseIsDown = true;
           // pf.handleDropdown(e);
@@ -192,7 +190,7 @@ To create a production bundle, use `npm run build` or `yarn build`.
           slider3.handleMouseMove();
           slider4.handleMouseMove();
           slider5.handleMouseMove();
-          slider6.handleMouseMove();
+          // slider6.handleMouseMove();
         };
         window.onmouseup = function(e) {
           mouseIsDown = false;
@@ -210,12 +208,12 @@ To create a production bundle, use `npm run build` or `yarn build`.
             slider5.containerDom.classList.toggle('on');
             slider5.sliderDom.disabled = false;
           });
-        document
-          .getElementById('checkClarity')
-          .addEventListener('click', function(e) {
-            slider6.containerDom.classList.toggle('on');
-            slider6.sliderDom.disabled = false;
-          });
+        // document
+        //   .getElementById('checkClarity')
+        //   .addEventListener('click', function(e) {
+        //     slider6.containerDom.classList.toggle('on');
+        //     slider6.sliderDom.disabled = false;
+        //   });
       }
     </script>
   </body>
